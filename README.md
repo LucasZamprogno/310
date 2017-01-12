@@ -73,7 +73,7 @@ While CPSC 310 will be a challenging course, we hope it will integrate many of t
 Piazza will be used but has not been configured.
 -->
 
-[Piazza](https://piazza.com/ubc.ca/winterterm22016/cpsc310) has been configured for this term. Please be mindful of the UBC Academic Misconduct Policy with respect to posting project solutions on Piazza. 
+[Piazza](https://piazza.com/ubc.ca/winterterm22016/cpsc310) has been configured for this term. Please be mindful of the UBC Academic Misconduct Policy with respect to posting project solutions on Piazza. It is _extremely_ helpful if your Piazza name corresponds to your name in the SSC in the advent we need to help you with a problem with your project, repositories, or grades.
 
 ### Getting help
 

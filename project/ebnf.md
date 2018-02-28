@@ -37,13 +37,15 @@ MORE_KEYS_C ::= ((', ' + KEY_C +)* ' and ' + KEY_C)
 M_KEY ::= 'average' || 'passed' || 'failed' || 'audited' || 'latitude' || 'longitude' || 'seats' 
 S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'full name' || 'short name' || 'number' || 'name' || 'address' || 'type' || 'furniture' || 'link' || 
 
-// Added past tense to pass, fail, audit
+// '_C' is for 'custom'
 // Using + for concatenation
-// Added up and down to keywords, ORDER to match D2
+// * is 0 or more
+// Added past tense to pass, fail, audit
+// Added up and down to keywords, ORDER to match D2 (not present in examples I saw)
 // Assuming no case sensitivity
 // Doesn't encode that KEY must match associated dataset (courses/rooms)
 // Doesn't encode that KEY_C in DISPLAY_GROUPED must be specified by INPUT in AGGREGATION
 // I would like the Oxford comma for ((', ' + KEY )? + ' and ' + KEY) even though it's not in the examples :P
-// * is 0 or more
 // Input is technically a string of one or more ASCII characters in the range 32-126, inclusive (and in decimal).
+// Changing to D1 only entails removaling aggregation sections, KEY_C, and MORE_KEYS_C, removingrooms keys from M_KEY and S_KEY, modifying ORDER
 ```

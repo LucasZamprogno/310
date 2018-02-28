@@ -11,8 +11,8 @@ ORDER        ::= 'sort ' + ('up ' || 'down ')? + 'by ' + KEY (+ MORE_KEYS)?
 
 QUERY_AGGREGATE ::= DATASET_GROUPED + ', ' + FILTER + '; ' + DISPLAY_GROUPED(+ '; ' + ORDER_GROUPED)? + '.'
 DATASET_GROUPED ::= DATASET + ' grouped by ' + KEY (+ MORE_KEYS)?
-DISPLAY_GROUPED ::= 'show ' + KEY_C (+ MORE_KEYS_C)? + ', ' + AGGREGATION
-ORDER_GROUPED   ::= 'sort ' + (('up ' || 'down ') +)? 'by ' + KEY_C (+ MORE_KEYS_C)?
+DISPLAY_GROUPED ::= 'show ' + KEY_C (+ MORE_KEYS_C)? + (', ' + AGGREGATION)?  
+ORDER_GROUPED   ::= 'sort ' + (('up ' || 'down ') +)? 'by ' + KEY_C (+ MORE_KEYS_C)?
 AGGREGATION     ::= 'where ' + AGG_DEF (+ MORE_DEFS)*
 
 AGG_DEF    ::= INPUT + ' is the ' + AGGREGATOR + ' of ' + KEY

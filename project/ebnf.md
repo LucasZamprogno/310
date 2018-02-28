@@ -13,8 +13,11 @@ QUERY_AGGREGATE ::= DATASET_GROUPED + ', ' + FILTER + '; ' + DISPLAY_GROUPED(+ '
 DATASET_GROUPED ::= DATASET + ' grouped by ' + KEY (+ MORE_KEYS)?
 DISPLAY_GROUPED ::= 'show ' + KEY_C + (+ MORE_KEYS_C)? + ', ' + AGGREGATION
 ORDER_GROUPED   ::= 'sort ' + ('up ' || 'down ')? + 'by ' + KEY_C (+ MORE_KEYS_C)?
-AGGREGATION     ::= 'where ' + INPUT + ' is the ' + AGGREGATOR + ' of ' KEY (+ ' and ' + INPUT + ' is the ' + AGGREGATOR + ' of ' KEY)*
-AGGREGATOR      ::= 'MAX' || 'MIN' || 'AVG' || 'SUM'
+AGGREGATION     ::= 'where ' + AGG_DEF (+ MORE_DEFS)*
+
+AGG_DEF    ::= INPUT + ' is the ' + AGGREGATOR + ' of ' KEY
+MORE_RULES ::= ((', ' + AGG_DEF )* + ' and ' + AGG_DEF)
+AGGREGATOR ::= 'MAX' || 'MIN' || 'AVG' || 'SUM'
 
 CRITERIA   ::= M_CRITERIA || S_CRITERIA
 M_CRITERIA ::= M_KEY + M_OP + INPUT
@@ -41,5 +44,4 @@ S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'fullname
 // Doesn't encode that KEY_C in DISPLAY_GROUPED must be specified by INPUT in AGGREGATION
 // I would like the Oxford comma for ((', ' + KEY )? + ' and ' + KEY) even though it's not in the examples :P
 // * is 0 or more
-// Aggregation uses multiple ands, not commas (aggregation AND aggregation AND aggregation, not aggregation, aggregation, and aggregation) just because it would be messy to write otherwise
 ```

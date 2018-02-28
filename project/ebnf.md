@@ -2,7 +2,7 @@
 ```
 QUERY  ::= QUERY_NORMAL || QUERY_AGGREGATE
 
-FILTER ::= 'find all entries' || 'find entries whose ' + (CRITERIA || (CRITERIA + (' and '/' or ') + CRITERIA)
+FILTER ::= 'find all entries' || 'find entries whose ' + (CRITERIA || (CRITERIA + ((' and ' || ' or ') + CRITERIA)*)
 
 QUERY_NORMAL ::= DATASET + ', ' + FILTER + '; ' + DISPLAY(+ '; ' + ORDER)? + '.'
 DATASET      ::= 'in ' + TYPE + ' dataset ' + INPUT

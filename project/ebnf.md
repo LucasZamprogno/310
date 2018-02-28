@@ -35,8 +35,9 @@ KEY_C ::= KEY || INPUT
 MORE_KEYS   ::= ((', ' + KEY +)* ' and ' + KEY)
 MORE_KEYS_C ::= ((', ' + KEY_C +)* ' and ' + KEY_C) 
 M_KEY ::= 'average' || 'passed' || 'failed' || 'audited' || 'latitude' || 'longitude' || 'seats' 
-S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'fullname' || 'shortname' || 'number' || 'name' || 'address' || 'type' || 'furniture' || 'link' || 
+S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'full name' || 'short name' || 'number' || 'name' || 'address' || 'type' || 'furniture' || 'link' || 
 
+// Added past tense to pass, fail, audit
 // Using + for concatenation
 // Added up and down to keywords, ORDER to match D2
 // Assuming no case sensitivity

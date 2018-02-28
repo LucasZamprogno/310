@@ -40,8 +40,9 @@ S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'full nam
 // '_C' is for 'custom'
 // Using + for concatenation
 // * is 0 or more
-// Added past tense to pass, fail, audit
-// Added up and down to keywords, ORDER to match D2 (not present in examples I saw)
+// Added past tense to pass, fail, audit (personal opinion: sounds better in natural language)
+// Added 'up' and 'down' to KEYWORD and ORDER to match D2 (not present in examples I saw)
+// Added 'or' KETWORD and FILTER to match old spec (not present in examples I saw)
 // Assuming no case sensitivity
 // Doesn't encode that KEY must match associated dataset (courses/rooms)
 // Doesn't encode that KEY_C in DISPLAY_GROUPED must be specified by INPUT in AGGREGATION

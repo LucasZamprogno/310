@@ -5,14 +5,13 @@ QUERY_NORMAL ::= DATASET + ', ' + FILTER + '; ' + DISPLAY(+ '; ' + ORDER)? + '.'
 QUERY_AGGREGATE ::= DATASET_GROUPED + ', ' + FILTER + '; ' + DISPLAY_GROUPED(+ '; ' + ORDER)? + '.'
 
 DATASET ::= 'in ' + TYPE + ' dataset ' + INPUT
-DATASET_GROUP ::= DATASET + ' grouped by ' + KEY (+ MORE_KEYS)?
-FILTER  ::= 'find all entries' || 'find entries whose ' + CRITERIA) || (CRITERIA + (' and '/' or ') + CRITERIA)
-DISPLAY ::= 'show ' + KEY + ((', ' + KEY )? + ' and ' + KEY)?
-DISPLAY_GROUPED ::= 'show ' + KEY + ((', ' + KEY )? + ' and ' + KEY)? + ', ' + AGGREGATION
+DATASET_GROUPED ::= DATASET + ' grouped by ' + KEY (+ MORE_KEYS)?
+FILTER  ::= 'find all entries' || 'find entries whose ' + (CRITERIA || (CRITERIA + (' and '/' or ') + CRITERIA)
+DISPLAY ::= 'show ' + KEY + (+ MORE_KEYS)?
+DISPLAY_GROUPED ::= 'show ' + KEY_C + (+ MORE_KEYS_C)? + ', ' + AGGREGATION
 ORDER   ::= 'sort ' + ('up ' || 'down ')? + 'by ' + KEY (+ MORE_KEYS)?
 AGGREGATION ::= 'where ' + INPUT + ' is the ' + AGGREGATOR + ' of ' KEY (+ ' and ' + INPUT + ' is the ' + AGGREGATOR + ' of ' KEY)*
 
-MORE_KEYS ::= ((', ' + KEY )* + ' and ' + KEY) 
 CRITERIA   ::= M_CRITERIA || S_CRITERIA
 M_CRITERIA ::= M_KEY + M_OP + INPUT
 S_CRITERIA ::= S_KEY + S_OP + INPUT
@@ -27,12 +26,17 @@ AGGREGATOR ::= 'MAX' || 'MIN' || 'AVG' || 'SUM'
 TYPE ::= 'courses' || 'rooms'
 
 KEY ::= M_KEY || S_KEY
+KEY_C ::= KEY || INPUT
+MORE_KEYS ::= ((', ' + KEY )* + ' and ' + KEY)
+MORE_KEYS_C ::= ((', ' + KEY_C )* + ' and ' + KEY_C) 
 M_KEY ::= 'average' || 'passed' || 'failed' || 'audited' || 'latitude' || 'longitude' || 'seats' 
 S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'fullname' || 'shortname' || 'number' || 'name' || 'address' || 'type' || 'furniture' || 'link' || 
 
 // Added up and down to keywords, ORDER
 // Assuming no case sensitivity
 // Doesn't encode that KEY must match associated dataset
+// Doesn't encode that KEY_C in DISPLAY_GROUPED must be specified by INPUT in AGGREGATION
 // I would like the Oxford comma for ((', ' + KEY )? + ' and ' + KEY) :P
 // * is 0 or more
+// Aggregation uses multiple ands, not commas (aggregation AND aggregation AND aggregation, not aggregation, aggregation, and aggregation) 
 ```

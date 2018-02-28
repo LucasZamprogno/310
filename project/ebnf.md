@@ -1,15 +1,18 @@
 # "EBNF"
 ```
 QUERY ::= QUERY_NORMAL || QUERY_AGGREGATE
-QUERY_NORMAL ::= DATASET + ', ' + FILTER + '; ' + DISPLAY(+ '; ' + ORDER)? + '.'
-QUERY_AGGREGATE ::= DATASET_GROUPED + ', ' + FILTER + '; ' + DISPLAY_GROUPED(+ '; ' + ORDER)? + '.'
 
-DATASET ::= 'in ' + TYPE + ' dataset ' + INPUT
-DATASET_GROUPED ::= DATASET + ' grouped by ' + KEY (+ MORE_KEYS)?
 FILTER  ::= 'find all entries' || 'find entries whose ' + (CRITERIA || (CRITERIA + (' and '/' or ') + CRITERIA)
+
+QUERY_NORMAL ::= DATASET + ', ' + FILTER + '; ' + DISPLAY(+ '; ' + ORDER)? + '.'
+DATASET ::= 'in ' + TYPE + ' dataset ' + INPUT
 DISPLAY ::= 'show ' + KEY + (+ MORE_KEYS)?
-DISPLAY_GROUPED ::= 'show ' + KEY_C + (+ MORE_KEYS_C)? + ', ' + AGGREGATION
 ORDER   ::= 'sort ' + ('up ' || 'down ')? + 'by ' + KEY (+ MORE_KEYS)?
+
+QUERY_AGGREGATE ::= DATASET_GROUPED + ', ' + FILTER + '; ' + DISPLAY_GROUPED(+ '; ' + ORDER_GROUPED)? + '.'
+DATASET_GROUPED ::= DATASET + ' grouped by ' + KEY (+ MORE_KEYS)?
+DISPLAY_GROUPED ::= 'show ' + KEY_C + (+ MORE_KEYS_C)? + ', ' + AGGREGATION
+ORDER_GROUPED ::= 'sort ' + ('up ' || 'down ')? + 'by ' + KEY_C (+ MORE_KEYS_C)?
 AGGREGATION ::= 'where ' + INPUT + ' is the ' + AGGREGATOR + ' of ' KEY (+ ' and ' + INPUT + ' is the ' + AGGREGATOR + ' of ' KEY)*
 
 CRITERIA   ::= M_CRITERIA || S_CRITERIA
@@ -32,11 +35,11 @@ MORE_KEYS_C ::= ((', ' + KEY_C )* + ' and ' + KEY_C)
 M_KEY ::= 'average' || 'passed' || 'failed' || 'audited' || 'latitude' || 'longitude' || 'seats' 
 S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'fullname' || 'shortname' || 'number' || 'name' || 'address' || 'type' || 'furniture' || 'link' || 
 
-// Added up and down to keywords, ORDER
+// Added up and down to keywords, ORDER to match D2
 // Assuming no case sensitivity
-// Doesn't encode that KEY must match associated dataset
+// Doesn't encode that KEY must match associated dataset (courses/rooms)
 // Doesn't encode that KEY_C in DISPLAY_GROUPED must be specified by INPUT in AGGREGATION
-// I would like the Oxford comma for ((', ' + KEY )? + ' and ' + KEY) :P
+// I would like the Oxford comma for ((', ' + KEY )? + ' and ' + KEY) even though it's not in the examples :P
 // * is 0 or more
-// Aggregation uses multiple ands, not commas (aggregation AND aggregation AND aggregation, not aggregation, aggregation, and aggregation) 
+// Aggregation uses multiple ands, not commas (aggregation AND aggregation AND aggregation, not aggregation, aggregation, and aggregation) just because it would be messy to write otherwise
 ```

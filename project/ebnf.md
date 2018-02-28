@@ -15,7 +15,7 @@ DISPLAY_GROUPED ::= 'show ' + KEY_C (+ MORE_KEYS_C)? + ', ' + AGGREGATION
 ORDER_GROUPED   ::= 'sort ' + (('up ' || 'down ') +)? 'by ' + KEY_C (+ MORE_KEYS_C)?
 AGGREGATION     ::= 'where ' + AGG_DEF (+ MORE_DEFS)*
 
-AGG_DEF    ::= INPUT + ' is the ' + AGGREGATOR + ' of ' KEY
+AGG_DEF    ::= INPUT + ' is the ' + AGGREGATOR + ' of ' + KEY
 MORE_RULES ::= ((', ' + AGG_DEF +)* ' and ' + AGG_DEF)
 AGGREGATOR ::= 'MAX' || 'MIN' || 'AVG' || 'SUM'
 

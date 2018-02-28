@@ -1,12 +1,18 @@
 # "EBNF"
 ```
-QUERY_STRING ::= DATASET + ', ' + FILTER + '; ' + DISPLAY(+ '; ' + ORDER)? + '.'
+QUERY ::= QUERY_NORMAL || QUERY_AGGREGATE
+QUERY_NORMAL ::= DATASET + ', ' + FILTER + '; ' + DISPLAY(+ '; ' + ORDER)? + '.'
+QUERY_AGGREGATE ::= DATASET_GROUPED + ', ' + FILTER + '; ' + DISPLAY_GROUPED(+ '; ' + ORDER)? + '.'
 
 DATASET ::= 'in ' + TYPE + ' dataset ' + INPUT
+DATASET_GROUP ::= DATASET + ' grouped by ' + KEY (+ MORE_KEYS)?
 FILTER  ::= 'find all entries' || 'find entries whose ' + CRITERIA) || (CRITERIA + (' and '/' or ') + CRITERIA)
-DISPLAY ::= 'show ' + KEY + ((', ' + KEY )? + ' and ' + KEY)? 
-ORDER   ::= 'sort ' + ('up ' || 'down ')? + 'by ' + KEY + ((', ' + KEY )? + ' and ' + KEY)?
+DISPLAY ::= 'show ' + KEY + ((', ' + KEY )? + ' and ' + KEY)?
+DISPLAY_GROUPED ::= 'show ' + KEY + ((', ' + KEY )? + ' and ' + KEY)? + ', ' + AGGREGATION
+ORDER   ::= 'sort ' + ('up ' || 'down ')? + 'by ' + KEY (+ MORE_KEYS)?
+AGGREGATION ::= 'where ' + INPUT + ' is the ' + AGGREGATOR + ' of ' KEY (+ ' and ' + INPUT + ' is the ' + AGGREGATOR + ' of ' KEY)*
 
+MORE_KEYS ::= ((', ' + KEY )* + ' and ' + KEY) 
 CRITERIA   ::= M_CRITERIA || S_CRITERIA
 M_CRITERIA ::= M_KEY + M_OP + INPUT
 S_CRITERIA ::= S_KEY + S_OP + INPUT
@@ -28,4 +34,5 @@ S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'fullname
 // Assuming no case sensitivity
 // Doesn't encode that KEY must match associated dataset
 // I would like the Oxford comma for ((', ' + KEY )? + ' and ' + KEY) :P
+// * is 0 or more
 ```

@@ -44,4 +44,5 @@ S_KEY ::= 'department' || 'id' || 'instructor' || 'title' || 'uuid' || 'fullname
 // Doesn't encode that KEY_C in DISPLAY_GROUPED must be specified by INPUT in AGGREGATION
 // I would like the Oxford comma for ((', ' + KEY )? + ' and ' + KEY) even though it's not in the examples :P
 // * is 0 or more
+// Input is technically a string of one or more ASCII characters in the range 32-126, inclusive (and in decimal).
 ```

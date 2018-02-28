@@ -27,7 +27,7 @@ INPUT    ::= string of one or more characters. Cannot contain RESERVED as a subs
 RESERVED ::= KEYWORD || M_OP || S_OP || AGGREGATOR || TYPE
 KEYWORD  ::= 'in' || 'dataset' || 'find' || 'all' || 'show' || 'and' || 'or' || 'sort' || 'by' || 'entries' || 'grouped' || 'where' || 'is' || 'the' || 'of' || 'whose'
 M_OP     ::= 'is '(+ 'not ' +)? + ('greater than ' || 'less than ' || 'equal to ') + KEY
-S_OP     ::= ('includes || 'does not include') || ('begins' || 'does not begin' || 'ends' || 'does not end') + ' with ' + KEY
+S_OP     ::= (('includes ' || 'does not include ') || ('begins' || 'does not begin' || 'ends' || 'does not end') + ' with ')) + KEY
 TYPE     ::= 'courses' || 'rooms'
 
 KEY   ::= M_KEY || S_KEY
